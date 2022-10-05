@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://objects/Player.gd" type="Script" id=1]
+[ext_resource path="res://objects/Projectile.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.5
+mid_height = 0.5
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.1
+bottom_radius = 0.12
+height = 0.1
+radial_segments = 32
+
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="SphereMesh" id=4]
+radius = 0.12
+height = 0.01
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.188235, 1, 0.184314, 1 )
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 1 )
+Projectile = ExtResource( 2 )
+
+[node name="PlayerModel" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+
+[node name="PlayerEyes" type="CSGMesh" parent="PlayerModel"]
+transform = Transform( 1, 0, 0, 0, 0.990557, -0.137099, 0, 0.137099, 0.990557, 0, -0.489762, -0.394902 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="CameraRig" type="Position3D" parent="."]
+
+[node name="Camera" type="Camera" parent="CameraRig"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 20, 12 )
+fov = 50.0
+
+[node name="Cursor" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.50689 )
+mesh = SubResource( 4 )
+material = SubResource( 5 )
+
+[node name="Front" type="Position3D" parent="."]
+transform = Transform( -1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 0, 0, -0.696117 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.5
+one_shot = true
