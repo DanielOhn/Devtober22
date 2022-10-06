@@ -1,15 +1,23 @@
 extends KinematicBody
 
-onready var nav = $"../Navigation" as Navigation
-onready var player = $"../Player" as KinematicBody
+onready var player : KinematicBody =  $"../Player"
 
+onready var navAgent : NavigationAgent = $NavigationAgent
 var path = []
 
 func _ready():
-	path = nav.get_simple_path(global_transform.origin, player.global_transform.origin)
-	print(player.global_transform.origin)
-	print(global_transform.origin)
-	print(path)
+	navAgent.connect("velocity_computed", self, "_on_velocity_computed")
+	
 
 func _physics_process(delta):
-	pass
+	if navAgent.is_navigation_finished():
+		return
+	
+	var target_position = navAgent.get_next_location()
+	var direction  = global_transform.origin.direction_to(player.global_transform.origin)
+	navAgent.set_velocity(navAgent.max_speed * direction)
+	
+
+
+func _on_velocity_computed(velocity):
+	move_and_slide(velocity, Vector3.UP)
