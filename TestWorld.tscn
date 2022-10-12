@@ -81,5 +81,4 @@ transform = Transform( 1.01069, 0, 0, 0, 1.01069, 0, 0, 0, 1.01069, 0, 0, 0 )
 mesh = SubResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 10 )

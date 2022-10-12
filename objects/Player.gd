@@ -4,13 +4,15 @@ var velocity = Vector3.ZERO
 const speed = 15
 const friction = 80
 
-onready var rig = $CameraRig
-onready var camera = $CameraRig/Camera
-onready var cursor = $Cursor
+onready var rig : Position3D = $CameraRig
+onready var camera : Camera = $CameraRig/Camera
+onready var cursor : CSGMesh = $Cursor
+onready var primary_ability : CollisionShape = $Front/PrimaryHitbox/CollisionShape
 
-export(PackedScene) var Projectile
+export var Projectile : PackedScene
 
-onready var attack_rate = $Timer
+onready var primary_attackrate : Timer = $PrimaryAttackrate
+onready var secondary_attackrate : Timer = $SecondaryAttackrate
 
 func _ready():
 	rig.set_as_toplevel(true)
@@ -21,7 +23,7 @@ func _physics_process(delta):
 	player_movement(delta)
 	player_rotation()
 	
-	shoot_projectile(delta)
+	abilities()
 	
 func camera_follow():
 	var player_pos = global_transform.origin
@@ -59,15 +61,21 @@ func player_rotation():
 		cursor.global_transform.origin = pos
 		look_at(look, Vector3.UP)
 	
-func shoot_projectile(delta):
-	if Input.is_action_pressed("ui_shoot") and attack_rate.get_time_left() == 0:
+func abilities():
+	if Input.is_action_pressed("primary_ability") and primary_attackrate.get_time_left() == 0:
+		primary_ability.disabled = false
+		print(primary_attackrate.get_time_left())
+	elif primary_attackrate.get_time_left() <= 0.35 or primary_attackrate.get_time_left() == 0:
+		primary_ability.disabled = true
+	
+	if Input.is_action_pressed("secondary_ability") and secondary_attackrate.get_time_left() == 0:
 		var new_projectile = Projectile.instance()
 		new_projectile.global_transform = $Front.global_transform
 		new_projectile.speed = 40
 		var scene_root = get_tree().get_root().get_children()[0]
 		scene_root.add_child(new_projectile)
 		
-		attack_rate.start()
+		secondary_attackrate.start()
 		
 		#var mouse_pos = get_viewport().get_mouse_position()
 		#var ray_origin = camera.project_ray_origin(mouse_pos)
@@ -77,3 +85,6 @@ func shoot_projectile(delta):
 		#var intersection = space_state.intersect_ray(ray_origin, ray_target)
 
 
+
+func _on_PrimaryHitbox_body_entered(body):
+	print(body)
