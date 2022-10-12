@@ -13,6 +13,7 @@ export var Projectile : PackedScene
 
 onready var primary_attackrate : Timer = $PrimaryAttackrate
 onready var secondary_attackrate : Timer = $SecondaryAttackrate
+onready var primary_attack : MeshInstance = $Front/PrimaryHitbox/CollisionShape/MeshInstance
 
 func _ready():
 	rig.set_as_toplevel(true)
@@ -24,6 +25,8 @@ func _physics_process(delta):
 	player_rotation()
 	
 	abilities()
+	if (primary_attackrate.get_time_left() > 0):
+		print(primary_attackrate.get_time_left())
 	
 func camera_follow():
 	var player_pos = global_transform.origin
@@ -62,11 +65,15 @@ func player_rotation():
 		look_at(look, Vector3.UP)
 	
 func abilities():
-	if Input.is_action_pressed("primary_ability") and primary_attackrate.get_time_left() == 0:
+	if Input.is_action_just_pressed("primary_ability") and primary_attackrate.get_time_left() == 0:
 		primary_ability.disabled = false
-		print(primary_attackrate.get_time_left())
+		primary_attack.visible = true
+		
+		primary_attackrate.start()
+		
 	elif primary_attackrate.get_time_left() <= 0.35 or primary_attackrate.get_time_left() == 0:
 		primary_ability.disabled = true
+		primary_attack.visible = false
 	
 	if Input.is_action_pressed("secondary_ability") and secondary_attackrate.get_time_left() == 0:
 		var new_projectile = Projectile.instance()
@@ -83,7 +90,6 @@ func abilities():
 
 		#var space_state = get_world().direct_space_state
 		#var intersection = space_state.intersect_ray(ray_origin, ray_target)
-
 
 
 func _on_PrimaryHitbox_body_entered(body):
