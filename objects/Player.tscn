@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://objects/Projectile.tscn" type="PackedScene" id=2]
@@ -17,6 +17,57 @@ albedo_color = Color( 0.188235, 1, 0.184314, 1 )
 
 [sub_resource type="CapsuleMesh" id=9]
 
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Casting"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Attack/node = SubResource( 21 )
+states/Attack/position = Vector2( 159.4, 189.938 )
+states/Casting/node = SubResource( 26 )
+states/Casting/position = Vector2( 500.4, 195.938 )
+states/Idle/node = SubResource( 16 )
+states/Idle/position = Vector2( 248.5, 49.0781 )
+states/Run/node = SubResource( 17 )
+states/Run/position = Vector2( 406, 49.6953 )
+transitions = [ "Idle", "Run", SubResource( 18 ), "Run", "Idle", SubResource( 19 ), "Idle", "Attack", SubResource( 22 ), "Attack", "Idle", SubResource( 23 ), "Attack", "Run", SubResource( 24 ), "Run", "Attack", SubResource( 25 ), "Idle", "Casting", SubResource( 27 ), "Casting", "Idle", SubResource( 28 ), "Casting", "Run", SubResource( 29 ), "Run", "Casting", SubResource( 30 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -78.2999, 3.9375 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
 [node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 1 )
 Projectile = ExtResource( 2 )
@@ -30,11 +81,18 @@ __meta__ = {
 [node name="Wizard" parent="PlayerModel" instance=ExtResource( 3 )]
 transform = Transform( -0.4, -6.03983e-08, 2.64009e-15, 0, -1.74846e-08, -0.4, 6.03983e-08, -0.4, 1.74846e-08, 0, 1.81739e-08, 0.415771 )
 
-[node name="BoneAttachment" parent="PlayerModel/Wizard/RIG-control_rig/Skeleton2" index="0"]
-transform = Transform( 1, -2.27374e-13, 5.68434e-13, -7.10543e-14, 1, -1.08033e-07, 5.11591e-13, 1.08033e-07, 1, 1.26755e-09, 2.48086, -0.00670322 )
+[node name="Skeleton2" parent="PlayerModel/Wizard/control-rig" index="0"]
+bones/6/bound_children = [ NodePath("BoneAttachment2") ]
+bones/7/bound_children = [ NodePath("BoneAttachment") ]
 
-[node name="BoneAttachment2" parent="PlayerModel/Wizard/RIG-control_rig/Skeleton2" index="1"]
-transform = Transform( 1, -1.81188e-13, 7.15256e-07, 4.19924e-08, 0.998276, -0.0587097, -7.14023e-07, 0.0587097, 0.998276, 1.26759e-09, 2.20492, -0.0229319 )
+[node name="BoneAttachment" parent="PlayerModel/Wizard/control-rig/Skeleton2" index="0"]
+transform = Transform( 1, -3.49942e-13, 2.84217e-13, 4.08562e-14, 1, -1.04308e-07, 8.81073e-13, 1.04308e-07, 1, 3.15663e-09, 2.48086, -0.00670337 )
+
+[node name="BoneAttachment2" parent="PlayerModel/Wizard/control-rig/Skeleton2" index="1"]
+transform = Transform( 1, -8.0618e-09, 4.76974e-07, 3.60506e-08, 0.998276, -0.0587096, -4.75678e-07, 0.0587096, 0.998276, 5.38508e-09, 2.20492, -0.0229321 )
+
+[node name="AnimationPlayer" parent="PlayerModel/Wizard" index="1"]
+playback_speed = 2.0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0 )
@@ -82,6 +140,12 @@ one_shot = true
 process_mode = 0
 wait_time = 0.5
 one_shot = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 14 )
+anim_player = NodePath("../PlayerModel/Wizard/AnimationPlayer")
+active = true
+parameters/playback = SubResource( 20 )
 
 [connection signal="body_entered" from="Front/PrimaryHitbox" to="." method="_on_PrimaryHitbox_body_entered"]
 
