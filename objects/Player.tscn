@@ -1,28 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://objects/Projectile.tscn" type="PackedScene" id=2]
-
-[sub_resource type="CapsuleMesh" id=1]
-radius = 0.5
-mid_height = 0.5
-
-[sub_resource type="SpatialMaterial" id=7]
-flags_transparent = true
-
-[sub_resource type="SpatialMaterial" id=6]
-render_priority = -1
-next_pass = SubResource( 7 )
-flags_transparent = true
-flags_unshaded = true
-flags_no_depth_test = true
-albedo_color = Color( 0.137255, 0.584314, 0.611765, 1 )
-
-[sub_resource type="CylinderMesh" id=3]
-top_radius = 0.1
-bottom_radius = 0.12
-height = 0.1
-radial_segments = 32
+[ext_resource path="res://glb/Wizard.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=2]
 
@@ -43,15 +23,18 @@ Projectile = ExtResource( 2 )
 
 [node name="PlayerModel" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 1 )
-material = SubResource( 6 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="PlayerEyes" type="CSGMesh" parent="PlayerModel"]
-transform = Transform( 1, 0, 0, 0, 0.990557, -0.137099, 0, 0.137099, 0.990557, 0, -0.489762, -0.394902 )
-mesh = SubResource( 3 )
+[node name="Wizard" parent="PlayerModel" instance=ExtResource( 3 )]
+transform = Transform( -0.4, -6.03983e-08, 2.64009e-15, 0, -1.74846e-08, -0.4, 6.03983e-08, -0.4, 1.74846e-08, 0, 1.81739e-08, 0.415771 )
+
+[node name="BoneAttachment" parent="PlayerModel/Wizard/RIG-control_rig/Skeleton2" index="0"]
+transform = Transform( 1, -2.27374e-13, 5.68434e-13, -7.10543e-14, 1, -1.08033e-07, 5.11591e-13, 1.08033e-07, 1, 1.26755e-09, 2.48086, -0.00670322 )
+
+[node name="BoneAttachment2" parent="PlayerModel/Wizard/RIG-control_rig/Skeleton2" index="1"]
+transform = Transform( 1, -1.81188e-13, 7.15256e-07, 4.19924e-08, 0.998276, -0.0587097, -7.14023e-07, 0.0587097, 0.998276, 1.26759e-09, 2.20492, -0.0229319 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0 )
@@ -101,3 +84,5 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="body_entered" from="Front/PrimaryHitbox" to="." method="_on_PrimaryHitbox_body_entered"]
+
+[editable path="PlayerModel/Wizard"]
