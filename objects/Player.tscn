@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
-[ext_resource path="res://objects/Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://glb/DarkBlue.material" type="Material" id=3]
 [ext_resource path="res://glb/Material.material" type="Material" id=4]
 [ext_resource path="res://glb/Black.material" type="Material" id=5]
@@ -9757,7 +9757,7 @@ bones/221/enabled = true
 bones/221/bound_children = [  ]
 
 [node name="BoneAttachment" type="BoneAttachment" parent="PlayerModel/Wizard/control-rig/Skeleton2"]
-transform = Transform( 1, -3.49942e-13, 2.84217e-13, 4.08562e-14, 1, -1.11759e-07, 8.81073e-13, 1.11759e-07, 1, 3.15663e-09, 2.48086, -0.00670337 )
+transform = Transform( 1, -3.49942e-13, 2.84217e-13, 4.08562e-14, 1, -1.04308e-07, 8.81073e-13, 1.04308e-07, 1, 3.15663e-09, 2.48086, -0.00670337 )
 bone_name = "DEF-spine.006"
 
 [node name="Hat" type="MeshInstance" parent="PlayerModel/Wizard/control-rig/Skeleton2/BoneAttachment"]

@@ -8,6 +8,7 @@ var health : int
 var iframe : int
 
 const primary_damage : int = 1
+const primary_knockback : int = 40
 
 onready var rig : Position3D = $CameraRig
 onready var camera : Camera = $CameraRig/Camera
@@ -90,12 +91,10 @@ func abilities():
 func shoot():
 	var new_projectile = Projectile.instance()
 	new_projectile.global_transform = $Front.global_transform
-	new_projectile.speed = 40
 	
 	var scene_root = get_tree().get_root().get_children()[0]
 	scene_root.add_child(new_projectile)
 	
 func _on_PrimaryHitbox_body_entered(body):
 	if primary_ability.disabled == false and body.is_in_group("Enemy"):
-		print("HIT")
-		body.hurt(primary_damage)
+		body.hurt(primary_damage, primary_knockback)

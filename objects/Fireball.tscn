@@ -1,0 +1,104 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://materials/flame_02.png" type="Texture" id=1]
+[ext_resource path="res://materials/flame_04.png" type="Texture" id=2]
+[ext_resource path="res://objects/Fireball.gd" type="Script" id=3]
+
+[sub_resource type="SphereShape" id=6]
+radius = 0.8
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0.303226, 0.696774, 0.706452, 1 )
+colors = PoolColorArray( 1, 0.496996, 0.0655391, 1, 1, 0, 0, 1, 1, 0.448203, 0.448203, 0.796078, 0.764706, 0.376471, 0.376471, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.825743 ), 0.0, 0.0, 0, 0, Vector2( 0.265363, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.656425, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.771689 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 12.0
+angular_velocity_random = 0.5
+angle = 360.0
+angle_random = 1.0
+scale = 1.4
+scale_curve = SubResource( 3 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.016129, 0.254839, 0.893548, 0.993548 )
+colors = PoolColorArray( 0.937178, 0.408158, 0.408158, 1, 1, 0, 0, 1, 1, 0.30328, 0, 1, 1, 0.980392, 0.972549, 0 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+lifetime_randomness = 0.2
+trail_divisor = 4
+emission_shape = 1
+emission_sphere_radius = 0.2
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 10.0
+angular_velocity_random = 1.0
+angle = 5.0
+angle_random = 1.0
+color_ramp = SubResource( 11 )
+
+[sub_resource type="QuadMesh" id=13]
+
+[node name="Fireball" type="Area"]
+script = ExtResource( 3 )
+speed = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22983, 0 )
+shape = SubResource( 6 )
+
+[node name="Orb" type="Particles" parent="."]
+material_override = SubResource( 1 )
+amount = 80
+lifetime = 2.0
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="Trail" type="Particles" parent="."]
+material_override = SubResource( 9 )
+lifetime = 1.2
+local_coords = false
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 13 )
+
+[connection signal="body_entered" from="." to="." method="_on_Fireball_body_entered"]
