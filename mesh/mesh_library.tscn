@@ -23,7 +23,7 @@ uv1_triplanar = true
 
 [node name="MeshLibrary" type="Spatial"]
 
-[node name="Wall" type="MeshInstance" parent="."]
+[node name="Wall" type="MeshInstance" parent="." groups=["Wall"]]
 mesh = SubResource( 1 )
 material/0 = SubResource( 3 )
 

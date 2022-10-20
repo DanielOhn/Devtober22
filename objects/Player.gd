@@ -4,6 +4,11 @@ var velocity = Vector3.ZERO
 const speed = 15
 const friction = 80
 
+var health : int
+var iframe : int
+
+const primary_damage : int = 1
+
 onready var rig : Position3D = $CameraRig
 onready var camera : Camera = $CameraRig/Camera
 onready var cursor : CSGMesh = $Cursor
@@ -13,7 +18,6 @@ export var Projectile : PackedScene
 
 onready var primary_attackrate : Timer = $PrimaryAttackrate
 onready var secondary_attackrate : Timer = $SecondaryAttackrate
-onready var primary_attack : MeshInstance = $Front/PrimaryHitbox/CollisionShape/MeshInstance
 
 onready var animations : AnimationPlayer = $PlayerModel/Wizard/AnimationPlayer
 onready var animTree : AnimationTree = $AnimationTree
@@ -22,6 +26,7 @@ onready var animState : AnimationNodeStateMachinePlayback = animTree.get("parame
 func _ready():
 	rig.set_as_toplevel(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	primary_ability.disabled = true
 	
 func _physics_process(delta):
 	camera_follow()
@@ -71,31 +76,26 @@ func player_rotation():
 func abilities():
 	# Left Click Attack - Sword attack that hits in a small cone in front of player
 	if Input.is_action_just_pressed("primary_ability") and primary_attackrate.get_time_left() == 0:
-		#primary_ability.disabled = false
-		#primary_attack.visible = true
 	
 		# Starts timer
-		primary_attackrate.start()
 		animState.travel("Attack")
-		
-	elif primary_attackrate.get_time_left() <= 0.4:
-		#primary_ability.disabled = true
-		#primary_attack.visible = false
-		pass
-	
+		primary_attackrate.start()
+
+
 	# Right Click Attack - Shoots a ranged projectile to target location
 	if Input.is_action_pressed("secondary_ability") and secondary_attackrate.get_time_left() == 0:
 		animState.travel("Casting")
-		
-		
+		secondary_attackrate.start()
+	
 func shoot():
 	var new_projectile = Projectile.instance()
 	new_projectile.global_transform = $Front.global_transform
 	new_projectile.speed = 40
+	
 	var scene_root = get_tree().get_root().get_children()[0]
 	scene_root.add_child(new_projectile)
 	
-	secondary_attackrate.start()
-
 func _on_PrimaryHitbox_body_entered(body):
-	print(body)
+	if primary_ability.disabled == false and body.is_in_group("Enemy"):
+		print("HIT")
+		body.hurt(primary_damage)
