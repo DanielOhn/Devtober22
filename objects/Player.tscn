@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://objects/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://glb/DarkBlue.material" type="Material" id=3]
 [ext_resource path="res://glb/Material.material" type="Material" id=4]
 [ext_resource path="res://glb/Black.material" type="Material" id=5]
+[ext_resource path="res://objects/Punch.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "wizard_animations_Cube008"
@@ -2297,7 +2298,7 @@ tracks/222/loop_wrap = true
 tracks/222/imported = false
 tracks/222/enabled = true
 tracks/222/keys = {
-"times": PoolRealArray( 0.3, 0.5 ),
+"times": PoolRealArray( 0.2, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -8679,12 +8680,12 @@ bones/6/name = "DEF-spine.005"
 bones/6/parent = 5
 bones/6/rest = Transform( 1, -3.4028e-08, 4.79278e-07, 1.02084e-07, 0.989763, -0.142724, -4.69515e-07, 0.142724, 0.989763, 8.88178e-16, 0.08561, -3.72529e-09 )
 bones/6/enabled = true
-bones/6/bound_children = [  ]
+bones/6/bound_children = [ NodePath("BoneAttachment2") ]
 bones/7/name = "DEF-spine.006"
 bones/7/parent = 6
 bones/7/rest = Transform( 1, 4.19923e-08, -7.14022e-07, 3.55271e-15, 0.998275, 0.0587095, 7.15256e-07, -0.0587095, 0.998275, 0, 0.276423, 1.21072e-08 )
 bones/7/enabled = true
-bones/7/bound_children = [  ]
+bones/7/bound_children = [ NodePath("BoneAttachment") ]
 bones/8/name = "VIS_upper_arm_ik_pole.L"
 bones/8/parent = 0
 bones/8/rest = Transform( 0.124794, 0, 0.992183, 0.992183, 0, -0.124794, 0, 1, 0, 0.980037, 0.122652, 1.98005 )
@@ -9817,6 +9818,8 @@ shape = SubResource( 35 )
 [node name="MeshInstance" type="MeshInstance" parent="Front/PrimaryHitbox/CollisionShape"]
 transform = Transform( 0.876923, 0, 2.06978e-08, 0, 1.53846, 0, 3.99633e-08, 0, 0.533333, 0, 0, 0 )
 skeleton = NodePath("../..")
+
+[node name="Punch" parent="Front" instance=ExtResource( 6 )]
 
 [node name="PrimaryAttackrate" type="Timer" parent="."]
 process_mode = 0
