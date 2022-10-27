@@ -1,14 +1,7 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://objects/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://glb/enemy/Pumpkin.material" type="Material" id=2]
-[ext_resource path="res://glb/enemy/Yellow.material" type="Material" id=3]
-
-[sub_resource type="CapsuleShape" id=3]
-
-[sub_resource type="CylinderShape" id=6]
-height = 0.5
-radius = 0.55
+[ext_resource path="res://glb/enemy/Pumpkin.material" type="Material" id=1]
+[ext_resource path="res://glb/enemy/Yellow.material" type="Material" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "enemy3_Cube001"
@@ -19,7 +12,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 7104,
-"material": ExtResource( 2 ),
+"material": ExtResource( 1 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.5, 1.53524, -0.5, 1, 2, 1.00001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.5, 3.78524, -0.5, 1, 1, 1.00001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.55, 0.173153, -0.25, 0.5, 1.22501, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.55, -0.00184679, -0.25, 0.5, 1.225, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.05, 0.173153, -0.25, 0.5, 1.22501, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.05, -0.00184679, -0.25, 0.5, 1.225, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -1.775, 2.78524, -0.25, 1.22501, 0.5, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -1.95, 2.78524, -0.25, 1.225, 0.5, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.55, 2.78524, -0.25, 1.225, 0.5, 0.50001 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0.725, 2.78524, -0.25, 1.22501, 0.5, 0.50001 ) ],
 "vertex_count": 1671
@@ -31,7 +24,7 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194903,
 "index_count": 138,
-"material": ExtResource( 3 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [ AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( 0, 0, 0, -1, -1, -1 ), AABB( -0.4, 3.91206, 0.5, 0.8, 0.586094, 0.10001 ) ],
 "vertex_count": 103
@@ -743,7 +736,7 @@ bind/233/name = "thigh_ik_target.R"
 bind/233/bone = -1
 bind/233/pose = Transform( 1, 0, 0, 0, -0.00282878, 0.999996, 0, -0.999996, -0.00282878, -0.302711, 1.37138, 0.688017 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "attack"
 length = 0.583333
 tracks/0/type = "transform"
@@ -2384,25 +2377,10 @@ tracks/233/loop_wrap = true
 tracks/233/imported = false
 tracks/233/enabled = true
 tracks/233/keys = PoolRealArray( 0, 1, 0, 4.76837e-07, 5.36442e-07, 2.68221e-07, 6.03961e-14, -2.13163e-14, 1, 1, 1, 1, 0.583333, 1, 0, 4.76837e-07, 5.36442e-07, 2.68221e-07, 6.03961e-14, -2.13163e-14, 1, 1, 1, 1 )
-tracks/234/type = "method"
-tracks/234/path = NodePath("../..")
-tracks/234/interp = 1
-tracks/234/loop_wrap = true
-tracks/234/imported = false
-tracks/234/enabled = true
-tracks/234/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "Movement" ],
-"method": "changeState"
-} ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "run"
 length = 0.583333
-loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("RIG-rig/Skeleton:DEF-head")
 tracks/0/interp = 1
@@ -4045,7 +4023,6 @@ tracks/233/keys = PoolRealArray( 0, 1, 0, 4.76837e-07, 5.36442e-07, 2.68221e-07,
 [sub_resource type="Animation" id=5]
 resource_name = "walk"
 length = 0.583333
-loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("RIG-rig/Skeleton:DEF-head")
 tracks/0/interp = 1
@@ -5685,69 +5662,14 @@ tracks/233/imported = false
 tracks/233/enabled = true
 tracks/233/keys = PoolRealArray( 0, 1, 0, 4.76837e-07, 5.36442e-07, 2.68221e-07, 6.03961e-14, -2.13163e-14, 1, 1, 1, 1, 0.583333, 1, 0, 4.76837e-07, 5.36442e-07, 2.68221e-07, 6.03961e-14, -2.13163e-14, 1, 1, 1, 1 )
 
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "attack"
+[node name="EnemyMesh" type="Spatial"]
+transform = Transform( -0.4, 3.49691e-08, -1.52855e-15, 0, -1.74846e-08, -0.4, -3.49691e-08, -0.4, 1.74846e-08, 0, 0, 0 )
 
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "run"
+[node name="enemy3" type="Spatial" parent="."]
 
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "walk"
+[node name="RIG-rig" type="Spatial" parent="enemy3"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-
-[sub_resource type="AnimationNodeStateMachine" id=17]
-states/attack/node = SubResource( 8 )
-states/attack/position = Vector2( 311, 130 )
-states/run/node = SubResource( 9 )
-states/run/position = Vector2( 416, 39 )
-states/walk/node = SubResource( 10 )
-states/walk/position = Vector2( 229, 39 )
-transitions = [ "walk", "attack", SubResource( 11 ), "attack", "walk", SubResource( 12 ), "attack", "run", SubResource( 13 ), "run", "attack", SubResource( 14 ), "run", "walk", SubResource( 15 ), "walk", "run", SubResource( 16 ) ]
-start_node = "walk"
-graph_offset = Vector2( 3, -41 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
-
-[node name="Enemy" type="KinematicBody" groups=["Enemy"]]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-script = ExtResource( 1 )
-
-[node name="Timer" type="Timer" parent="."]
-process_mode = 0
-wait_time = 0.25
-autostart = true
-
-[node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.515858, 0, 0, 0, 0.51695, -1.57794e-11, 0, -1.97229e-11, 0.413199, 0, 0, 0 )
-shape = SubResource( 3 )
-
-[node name="Hurtbox" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Hurtbox"]
-shape = SubResource( 6 )
-
-[node name="EnemyMesh" type="Spatial" parent="."]
-transform = Transform( -0.3, 4.52987e-08, -1.98007e-15, 0, -1.31134e-08, -0.3, -4.52987e-08, -0.3, 1.31134e-08, 0, 0, 0.696 )
-
-[node name="enemy3" type="Spatial" parent="EnemyMesh"]
-
-[node name="RIG-rig" type="Spatial" parent="EnemyMesh/enemy3"]
-
-[node name="Skeleton" type="Skeleton" parent="EnemyMesh/enemy3/RIG-rig"]
+[node name="Skeleton" type="Skeleton" parent="enemy3/RIG-rig"]
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform( 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0 )
@@ -6919,20 +6841,11 @@ bones/233/rest = Transform( 1, 0, 0, 0, -0.999996, 0.00282878, 0, -0.00282878, -
 bones/233/enabled = true
 bones/233/bound_children = [  ]
 
-[node name="body" type="MeshInstance" parent="EnemyMesh/enemy3/RIG-rig/Skeleton"]
+[node name="body" type="MeshInstance" parent="enemy3/RIG-rig/Skeleton"]
 mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyMesh/enemy3"]
-anims/attack = SubResource( 7 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="enemy3"]
+anims/attack = SubResource( 3 )
 anims/run = SubResource( 4 )
 anims/walk = SubResource( 5 )
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 17 )
-anim_player = NodePath("../EnemyMesh/enemy3/AnimationPlayer")
-active = true
-parameters/playback = SubResource( 18 )
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
