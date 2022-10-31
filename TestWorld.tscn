@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://mesh/mesh_library.meshlib" type="MeshLibrary" id=1]
+[ext_resource path="res://objects/EnemySpawn.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/Enemy.tscn" type="PackedScene" id=4]
 
@@ -21,10 +22,10 @@ albedo_color = Color( 1, 1, 1, 0 )
 [node name="TestWorld" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784345, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784345, 21.656 )
 
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.676776, 18.8033 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 9.59069, 0.676776, 12.5854 )
 
 [node name="Navigation" type="Navigation" parent="."]
 transform = Transform( 0.965155, 0, 0, 0, 0.965155, 0, 0, 0, 0.965155, 0, -0.698245, 0 )
@@ -54,3 +55,6 @@ transform = Transform( 1.0361, 0, 0, 0, 1.0361, 0, 0, 0, 1.0361, 0, 0.723454, 0 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/StaticBody"]
 transform = Transform( 500, 0, 0, 0, 0.5, 0, 0, 0, 500, 0, -0.698245, 0 )
 shape = SubResource( 14 )
+
+[node name="EnemySpawn" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.889903, 0, -0.456151, 0, 1, 0, 0.456151, 0, -0.889903, 31.36, 0.403584, 38.4185 )

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/EnemySpawn.gd" type="Script" id=1]
+[ext_resource path="res://objects/Enemy.tscn" type="PackedScene" id=2]
+
+[sub_resource type="PhysicsMaterial" id=4]
+
+[sub_resource type="CapsuleShape" id=5]
+radius = 0.85
+height = 0.4
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.9
+mid_height = 0.25
+radial_segments = 12
+rings = 1
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.235294, 0.796078, 0, 1 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.5, 0.5, 0.5 )
+
+[node name="EnemySpawn" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+physics_material_override = SubResource( 4 )
+script = ExtResource( 1 )
+Enemy = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.310196, 0 )
+shape = SubResource( 5 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Spawn" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.655774, 1.74954 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Spawn"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.605634, 0 )
+shape = SubResource( 3 )
+
+[node name="SpawnTime" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="SpawnTime" to="." method="_on_SpawnTime_timeout"]

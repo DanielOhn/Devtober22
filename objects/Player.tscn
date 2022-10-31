@@ -1,11 +1,10 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://objects/Player.gd" type="Script" id=1]
 [ext_resource path="res://objects/Fireball.tscn" type="PackedScene" id=2]
 [ext_resource path="res://glb/DarkBlue.material" type="Material" id=3]
 [ext_resource path="res://glb/Material.material" type="Material" id=4]
 [ext_resource path="res://glb/Black.material" type="Material" id=5]
-[ext_resource path="res://objects/Punch.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "wizard_animations_Cube008"
@@ -22,6 +21,9 @@ surfaces/0 = {
 "vertex_count": 365
 }
 
+[sub_resource type="SpatialMaterial" id=37]
+albedo_color = Color( 0, 0.227451, 0.972549, 1 )
+
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "wizard_animations_Cube002"
 surfaces/0 = {
@@ -36,6 +38,9 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 135
 }
+
+[sub_resource type="SpatialMaterial" id=38]
+albedo_color = Color( 0, 0.207843, 1, 1 )
 
 [sub_resource type="ArrayMesh" id=3]
 resource_name = "wizard_animations_Cube001"
@@ -733,6 +738,10 @@ bind/220/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0.214506, 0.921888, 0.115
 bind/221/name = "thigh_ik_target.R"
 bind/221/bone = -1
 bind/221/pose = Transform( 1, 0, 0, 0, 0.00591266, -0.999983, 0, 0.999983, 0.00591266, 0.214506, 0.922553, 0.109838 )
+
+[sub_resource type="SpatialMaterial" id=36]
+vertex_color_is_srgb = true
+albedo_color = Color( 0.109804, 0.109804, 0.109804, 1 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Attack"
@@ -8629,6 +8638,32 @@ graph_offset = Vector2( -64.2999, -31.0625 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
+[sub_resource type="Animation" id=39]
+resource_name = "Hurt"
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "flash"
+}, {
+"args": [  ],
+"method": "returnColor"
+}, {
+"args": [  ],
+"method": "flash"
+}, {
+"args": [  ],
+"method": "returnColor"
+} ]
+}
+
 [node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 1 )
 Projectile = ExtResource( 2 )
@@ -8680,12 +8715,12 @@ bones/6/name = "DEF-spine.005"
 bones/6/parent = 5
 bones/6/rest = Transform( 1, -3.4028e-08, 4.79278e-07, 1.02084e-07, 0.989763, -0.142724, -4.69515e-07, 0.142724, 0.989763, 8.88178e-16, 0.08561, -3.72529e-09 )
 bones/6/enabled = true
-bones/6/bound_children = [  ]
+bones/6/bound_children = [ NodePath("BoneAttachment2") ]
 bones/7/name = "DEF-spine.006"
 bones/7/parent = 6
 bones/7/rest = Transform( 1, 4.19923e-08, -7.14022e-07, 3.55271e-15, 0.998275, 0.0587095, 7.15256e-07, -0.0587095, 0.998275, 0, 0.276423, 1.21072e-08 )
 bones/7/enabled = true
-bones/7/bound_children = [  ]
+bones/7/bound_children = [ NodePath("BoneAttachment") ]
 bones/8/name = "VIS_upper_arm_ik_pole.L"
 bones/8/parent = 0
 bones/8/rest = Transform( 0.124794, 0, 0.992183, 0.992183, 0, -0.124794, 0, 1, 0, 0.980037, 0.122652, 1.98005 )
@@ -9764,6 +9799,7 @@ bone_name = "DEF-spine.006"
 [node name="Hat" type="MeshInstance" parent="PlayerModel/Wizard/control-rig/Skeleton2/BoneAttachment"]
 transform = Transform( 0.679036, 1.58734e-15, 3.71724e-14, 1.32683e-14, -0.0812355, 1.8271e-08, -3.85987e-14, 2.26969e-09, 0.653944, -1.2679e-09, 0.906897, 0.00670334 )
 mesh = SubResource( 1 )
+material/0 = SubResource( 37 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="PlayerModel/Wizard/control-rig/Skeleton2"]
 transform = Transform( 1, -8.0618e-09, 4.76974e-07, 3.60506e-08, 0.998276, -0.0587096, -4.75678e-07, 0.0587096, 0.998276, 5.38508e-09, 2.20492, -0.0229321 )
@@ -9772,10 +9808,12 @@ bone_name = "DEF-spine.005"
 [node name="Cloak" type="MeshInstance" parent="PlayerModel/Wizard/control-rig/Skeleton2/BoneAttachment2"]
 transform = Transform( 0.544505, 4.4613e-08, -3.88789e-07, 1.6443e-14, 1.06058, 0.0319677, 3.8946e-07, -0.0623735, 0.543566, 8.75148e-08, -0.718343, -0.124127 )
 mesh = SubResource( 2 )
+material/0 = SubResource( 38 )
 
 [node name="Body" type="MeshInstance" parent="PlayerModel/Wizard/control-rig/Skeleton2"]
 mesh = SubResource( 3 )
 skin = SubResource( 4 )
+material/0 = SubResource( 36 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerModel/Wizard"]
 anims/Attack = SubResource( 5 )
@@ -9819,8 +9857,6 @@ shape = SubResource( 35 )
 transform = Transform( 0.876923, 0, 2.06978e-08, 0, 1.53846, 0, 3.99633e-08, 0, 0.533333, 0, 0, 0 )
 skeleton = NodePath("../..")
 
-[node name="Punch" parent="Front" instance=ExtResource( 6 )]
-
 [node name="PrimaryAttackrate" type="Timer" parent="."]
 process_mode = 0
 wait_time = 0.5
@@ -9836,5 +9872,11 @@ tree_root = SubResource( 14 )
 anim_player = NodePath("../PlayerModel/Wizard/AnimationPlayer")
 active = true
 parameters/playback = SubResource( 20 )
+
+[node name="IFrame" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hurt" type="AnimationPlayer" parent="."]
+anims/Hurt = SubResource( 39 )
 
 [connection signal="body_entered" from="Front/PrimaryHitbox" to="." method="_on_PrimaryHitbox_body_entered"]

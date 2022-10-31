@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://objects/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://glb/enemy/Pumpkin.material" type="Material" id=2]
@@ -742,6 +742,21 @@ bind/232/pose = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -0.302711, -1.36943, -0.6
 bind/233/name = "thigh_ik_target.R"
 bind/233/bone = -1
 bind/233/pose = Transform( 1, 0, 0, 0, -0.00282878, 0.999996, 0, -0.999996, -0.00282878, -0.302711, 1.37138, 0.688017 )
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../Hitbox/CollisionShape:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "attack"
@@ -2398,6 +2413,18 @@ tracks/234/keys = {
 "args": [ "Movement" ],
 "method": "changeState"
 } ]
+}
+tracks/235/type = "value"
+tracks/235/path = NodePath("../../Hitbox/CollisionShape:disabled")
+tracks/235/interp = 1
+tracks/235/loop_wrap = true
+tracks/235/imported = false
+tracks/235/enabled = true
+tracks/235/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -5721,6 +5748,9 @@ graph_offset = Vector2( 3, -41 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
 
+[sub_resource type="CapsuleShape" id=19]
+radius = 0.4
+
 [node name="Enemy" type="KinematicBody" groups=["Enemy"]]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 script = ExtResource( 1 )
@@ -6924,6 +6954,7 @@ mesh = SubResource( 1 )
 skin = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EnemyMesh/enemy3"]
+anims/RESET = SubResource( 20 )
 anims/attack = SubResource( 7 )
 anims/run = SubResource( 4 )
 anims/walk = SubResource( 5 )
@@ -6934,5 +6965,14 @@ anim_player = NodePath("../EnemyMesh/enemy3/AnimationPlayer")
 active = true
 parameters/playback = SubResource( 18 )
 
+[node name="Hitbox" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 3.49691e-08 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Hitbox"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -8.74228e-09 )
+shape = SubResource( 19 )
+disabled = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

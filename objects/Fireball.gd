@@ -3,7 +3,7 @@ extends Area
 export var speed = 12
 
 const knockback = 60
-const damage = 1
+const damage = 5
 
 const duration = 2
 var timer = 0

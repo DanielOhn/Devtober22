@@ -4,6 +4,7 @@ onready var player : KinematicBody =  $"../Player"
 onready var nav : Navigation = $"../Navigation"
 
 onready var collision : CollisionShape = $"Hurtbox/CollisionShape"
+onready var hitbox : Area = $Hitbox
 
 onready var animations : AnimationPlayer = $EnemyMesh/enemy3/AnimationPlayer
 onready var animTree : AnimationTree = $AnimationTree
@@ -16,7 +17,7 @@ var states : Array = ["Movement", "Attack", "Hurt"]
 var state : String = states[0]
 
 var speed = 10
-var health = 20
+var health = 5
 var hitstun = 0
 var wallstun = 0
 var knockback = 0
@@ -88,3 +89,9 @@ func _on_Hurtbox_body_entered(body):
 	if (body.is_in_group("wall") and hitstun != 0):
 		print("test")
 		wallstun = hitstun + 20
+
+
+func _on_Hitbox_body_entered(body):
+	if body.is_in_group("Player"):
+		print("Hit")
+		body.hurt(2)
