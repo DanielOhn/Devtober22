@@ -5,6 +5,7 @@ const speed = 15
 const friction = 80
 
 var health : int = 6
+var score : int = 0
 
 const primary_damage : int = 3
 const primary_knockback : int = 40
@@ -35,11 +36,12 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	primary_ability.disabled = true
 	
-func _physics_process(delta):		
-	camera_follow()
-	player_movement(delta)
-	player_rotation()
-	abilities()
+func _physics_process(delta):
+	if health > 0:
+		camera_follow()
+		player_movement(delta)
+		player_rotation()
+		abilities()
 
 func flash():
 	var body_material = body.get_surface_material(0)

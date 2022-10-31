@@ -76,6 +76,7 @@ func hurt(damage, knockback):
 	if (health <= 0):
 		# Play death animation then release
 		# ADD DEATH ANIMATION
+		player.score += 1
 		queue_free()
 		
 func follow():
@@ -87,11 +88,9 @@ func _on_Timer_timeout():
 
 func _on_Hurtbox_body_entered(body):
 	if (body.is_in_group("wall") and hitstun != 0):
-		print("test")
 		wallstun = hitstun + 20
 
 
 func _on_Hitbox_body_entered(body):
 	if body.is_in_group("Player"):
-		print("Hit")
 		body.hurt(2)
